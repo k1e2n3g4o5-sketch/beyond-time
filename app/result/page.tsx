@@ -1,6 +1,7 @@
 // app/result/page.tsx
 'use client';
 
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { generateLieResult } from '@/lib/diagnosis';
@@ -8,7 +9,7 @@ import { generateLieResult } from '@/lib/diagnosis';
 const IMMUTABLE_COORDINATE_PART = '4c6f8d4e';
 const STORE_REDIRECT_URL = 'https://apps.apple.com/';
 
-export default function ResultPage() {
+function ResultContent() {
   const searchParams = useSearchParams();
   const birthdate = searchParams.get('date') || '';
   const [result, setResult] = useState<{ body: string } | null>(null);
@@ -77,3 +78,14 @@ export default function ResultPage() {
   );
 }
 
+export default function ResultPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center p-6">
+        <p>読み込み中...</p>
+      </div>
+    }>
+      <ResultContent />
+    </Suspense>
+  );
+}
