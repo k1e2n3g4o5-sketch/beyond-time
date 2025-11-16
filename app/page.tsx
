@@ -1,0 +1,26 @@
+// app/page.tsx
+import Link from 'next/link';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-white">
+      <div className="w-full max-w-sm space-y-6 text-center">
+        <h1 className="text-4xl font-bold mb-4">知らんけど診断</h1>
+        <p className="text-lg text-gray-600 mb-8">
+          あなたの未来を適当に占います
+        </p>
+        
+        <Link 
+          href="/diagnose"
+          className="block w-full text-lg font-bold bg-black text-white p-4 rounded-lg hover:opacity-80 transition"
+        >
+          診断を始める
+        </Link>
+        
+        <p className="text-xs text-gray-400 mt-8">
+          ※この診断は完全に適当です。知らんけど。
+        </p>
+      </div>
+    </div>
+  );
+}
